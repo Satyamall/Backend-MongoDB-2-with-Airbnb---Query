@@ -1,3 +1,7 @@
+# Expected all queries of airbnb in below Picture
+![Screenshot (223)](https://user-images.githubusercontent.com/80479635/152977232-85b8a472-1298-4bea-a7ca-6a580f127ea6.png)
+
+
 
 # 1. write a query of using two OR operators, and check for listings from any two countries
 
@@ -9,7 +13,8 @@
 
 - db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"},{$or: [{'review_scores.review_scores_rating': {$gte: 90}}]}]})
 **Show the data of following command in below picture**
-- 213
+![Screenshot (213)](https://user-images.githubusercontent.com/80479635/152976583-abd181f6-858b-4dfa-970f-3d27f0fd9b26.png)
+
 
 
 # 2. write a query of using two AND operators and check for one country and review ratings to be greater than a particular value
@@ -25,7 +30,7 @@
 
 - db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}}]}]})
 **Show the data of following command in below picture**
--214
+![Screenshot (214)](https://user-images.githubusercontent.com/80479635/152976616-8266642d-ebb4-4e20-81c2-903262676e0b.png)
 
 
 # 3. write a query of using AND and OR operator in conjuction
@@ -37,7 +42,9 @@
 
 - db.listing.find({ $and: [ {$or: [{'address.country_code': "AU"},{'address.country_code': "US"}]},{'review_scores.review_scores_rating': 99}]})
 **Show the data of following command in below picture**
--215
+![Screenshot (215)](https://user-images.githubusercontent.com/80479635/152976677-80426eca-dfff-4ce1-bb30-d212e8de0e08.png)
+
+
 
 
 # 4. write a query of using AND and OR operator together
@@ -101,8 +108,9 @@
     }
   },
 **Show the data of following command in below picture**
--216
--217
+![Screenshot (216)](https://user-images.githubusercontent.com/80479635/152976717-dd838f22-7ea5-4036-a20b-418fcfb8b858.png)
+![Screenshot (217)](https://user-images.githubusercontent.com/80479635/152976736-fc0c6927-028b-490c-8d50-0ea777470c34.png)
+
 
 
 # 5. write a query of using querying arrays
@@ -145,9 +153,11 @@
 
 -db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{_id: 0, 'reviews.reviewer_name': 1})
 **Show the data of following command in below picture**
--218
--219
--220
+![Screenshot (218)](https://user-images.githubusercontent.com/80479635/152976808-271ed672-18eb-481e-ba80-6a5b06dd98dc.png)
+![Screenshot (219)](https://user-images.githubusercontent.com/80479635/152976842-0a081fdd-4792-4c5b-aae6-38861a952237.png)
+![Screenshot (220)](https://user-images.githubusercontent.com/80479635/152976854-0d579e64-c405-4475-887a-cb7828832289.png)
+
+
 
 # d.
 -db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{reviews: {$elemMatch: {_id: '420508856',reviewer_name: "Joe"}}})
@@ -704,9 +714,5 @@
 ]
 
 **Below Picture shows above query details**
--221
--222
-
-
-# Final Picture of all queries
--223
+![Screenshot (221)](https://user-images.githubusercontent.com/80479635/152977011-d5883685-4f25-4ca5-a906-2f06b7ddbcc8.png)
+![Screenshot (222)](https://user-images.githubusercontent.com/80479635/152977024-889e3930-9bb0-4446-b9ef-4eea4eef5249.png)
