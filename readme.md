@@ -4,31 +4,42 @@
 
 
 # 1. write a query of using two OR operators, and check for listings from any two countries
-
-- db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"}]}).count()
+```js
+db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"}]}).count()
+```
 **o/p - 1222**
-
-- db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"},{$or: [{'review_scores.review_scores_rating': {$gte: 90}}]}]}).count()
+```js
+db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"},{$or: [{'review_scores.review_scores_rating': {$gte: 90}}]}]}).count()
+```
 **o/p - 3553**
 
-- db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"},{$or: [{'review_scores.review_scores_rating': {$gte: 90}}]}]})
+```js
+db.listing.find({ $or: [{'address.country_code': "IN"},{'address.country_code':"US"},{$or: [{'review_scores.review_scores_rating': {$gte: 90}}]}]})
+```
 **Show the data of following command in below picture**
 ![Screenshot (213)](https://user-images.githubusercontent.com/80479635/152976583-abd181f6-858b-4dfa-970f-3d27f0fd9b26.png)
 
 
 
 # 2. write a query of using two AND operators and check for one country and review ratings to be greater than a particular value
-
--db.listing.find({ $and: [{'address.country_code': "US"},{'review_scores.review_scores_rating': {$gte: 85}}]}).count()
+```js
+db.listing.find({ $and: [{'address.country_code': "US"},{'review_scores.review_scores_rating': {$gte: 85}}]}).count()
+```
 **O/P- 1003**
 
-- db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}},{'review_scores.review_scores_rating': {$gte: 90}}]}]}).count()
+```js
+db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}},{'review_scores.review_scores_rating': {$gte: 90}}]}]}).count()
+```
 **O/P- 906**
 
-- db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}}]}]}).count()
+```js
+db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}}]}]}).count()
+```
 **O/P- 1062**
 
-- db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}}]}]})
+```js
+db.listing.find({ $and: [{'address.country_code': "US"},{$and: [{'review_scores.review_scores_rating': {$gte: 60}}]}]})
+```
 **Show the data of following command in below picture**
 ![Screenshot (214)](https://user-images.githubusercontent.com/80479635/152976616-8266642d-ebb4-4e20-81c2-903262676e0b.png)
 
@@ -36,11 +47,14 @@
 # 3. write a query of using AND and OR operator in conjuction
     a. it should belong to any two cities and
     b. it should have rating = 99
-
-- db.listing.find({ $and: [ {$or: [{'address.country_code': "AU"},{'address.country_code': "US"}]},{'review_scores.review_scores_rating': 99}]}).count()
+```js
+db.listing.find({ $and: [ {$or: [{'address.country_code': "AU"},{'address.country_code': "US"}]},{'review_scores.review_scores_rating': 99}]}).count()
+```
 **O/P- 115**
 
-- db.listing.find({ $and: [ {$or: [{'address.country_code': "AU"},{'address.country_code': "US"}]},{'review_scores.review_scores_rating': 99}]})
+```js
+db.listing.find({ $and: [ {$or: [{'address.country_code': "AU"},{'address.country_code': "US"}]},{'review_scores.review_scores_rating': 99}]})
+```
 **Show the data of following command in below picture**
 ![Screenshot (215)](https://user-images.githubusercontent.com/80479635/152976677-80426eca-dfff-4ce1-bb30-d212e8de0e08.png)
 
@@ -51,10 +65,14 @@
     a. it should belong to US and rating of 95 or
     b. it should belong to CA and rating of 99
 
-- db.listing.find({ $or: [ {$and: [{'address.country_code': "US"},{'review_scores.review_scores_rating': 95}]},{$and: [{'address.country_code': "CA"},{'review_scores.review_scores_rating': 99}]}]}).count()
+```js
+db.listing.find({ $or: [ {$and: [{'address.country_code': "US"},{'review_scores.review_scores_rating': 95}]},{$and: [{'address.country_code': "CA"},{'review_scores.review_scores_rating': 99}]}]}).count()
+```
 **O/P- 99**
 
-- db.listing.find({ $or: [ {$and: [{'address.country_code': "US"},{'review_scores.review_scores_rating': 95}]},{$and: [{'address.country_code': "CA"},{'review_scores.review_scores_rating': 99}]}]},{_id: 1, address: 1, review_scores: 1})
+```js
+db.listing.find({ $or: [ {$and: [{'address.country_code': "US"},{'review_scores.review_scores_rating': 95}]},{$and: [{'address.country_code': "CA"},{'review_scores.review_scores_rating': 99}]}]},{_id: 1, address: 1, review_scores: 1})
+```
 **O/P-**
 [
   {
@@ -120,38 +138,58 @@
     d. check all listings of reviews where it matches a particular user id and name, list only reviews that match the particular user id and name
 
 - # a.
--db.listing.find({$or: [{'amenities':{$size: 5}},{'amenities': {$size: 6}},{'amenities': {$size: 7}},{'amenities': {$size: 8}},{'amenities': {$size: 9}},{'amenities': {$size: 10}}]},{amenities: 1}).count()        
+```js
+db.listing.find({$or: [{'amenities':{$size: 5}},{'amenities': {$size: 6}},{'amenities': {$size: 7}},{'amenities': {$size: 8}},{'amenities': {$size: 9}},{'amenities': {$size: 10}}]},{amenities: 1}).count()        
+```
 **O/P- 657**
 
--  db.listing.find({'amenities':{$size: 5}},{amenities: 1}).count()
+```js
+db.listing.find({'amenities':{$size: 5}},{amenities: 1}).count()
+```
 **O/P- 31**
 
-- db.listing.find({'amenities':{$size: 6}},{amenities: 1}).count()
+```js
+db.listing.find({'amenities':{$size: 6}},{amenities: 1}).count()
+```
 **O/P- 50**
 
-- db.listing.find({'amenities':{$size: 7}},{amenities: 1}).count()
+```js
+db.listing.find({'amenities':{$size: 7}},{amenities: 1}).count()
+```
 **O/P- 86**
 
-- db.listing.find({'amenities':{$size: 8}},{amenities: 1}).count()
+```js
+db.listing.find({'amenities':{$size: 8}},{amenities: 1}).count()
+```
 **O/P- 117**
 
--db.listing.find({'amenities':{$size: 9}},{amenities: 1}).count()
+```js
+db.listing.find({'amenities':{$size: 9}},{amenities: 1}).count()
+```
 **O/P- 168**
 
-- db.listing.find({'amenities':{$size: 10}},{amenities: 1}).count()
+```js
+db.listing.find({'amenities':{$size: 10}},{amenities: 1}).count()
+```
 **O/P- 205**
 
 
 # b.
-- db.listing.find({$or: [{'amenities':{$size: 4}},{'amenities': {$size: 5}}]},{amenities: 1}).count()   
+```js
+db.listing.find({$or: [{'amenities':{$size: 4}},{'amenities': {$size: 5}}]},{amenities: 1}).count()   
+```
 **O/P- 47**
 
 
 # c.
-- db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{_id: 0, reviews: 1}).count()
+```js
+db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{_id: 0, reviews: 1}).count()
+```
 **O/P- 1**
 
--db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{_id: 0, 'reviews.reviewer_name': 1})
+```js
+db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{_id: 0, 'reviews.reviewer_name': 1})
+```
 **Show the data of following command in below picture**
 ![Screenshot (218)](https://user-images.githubusercontent.com/80479635/152976808-271ed672-18eb-481e-ba80-6a5b06dd98dc.png)
 ![Screenshot (219)](https://user-images.githubusercontent.com/80479635/152976842-0a081fdd-4792-4c5b-aae6-38861a952237.png)
@@ -160,7 +198,9 @@
 
 
 # d.
--db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{reviews: {$elemMatch: {_id: '420508856',reviewer_name: "Joe"}}})
+```js
+db.listing.find({'reviews':{$elemMatch: { _id: '420508856',reviewer_name: "Joe"}}},{reviews: {$elemMatch: {_id: '420508856',reviewer_name: "Joe"}}})
+```
 **O/P-**
 
 [
@@ -184,10 +224,14 @@
 # 6. find top 10 listings, sort them according to rating in descending order, and if the rating is similar rate them according to alphabetic order
     a. also ensure results belong only to New York, and check if there are atleast Wifi, Breakfast and 2 other amenities
 
--db.listing.find({},{_id:1,review_scores: 1,name: 1}).sort({'review_scores.review_scores_rating': -1}).limit(10)
+```js
+db.listing.find({},{_id:1,review_scores: 1,name: 1}).sort({'review_scores.review_scores_rating': -1}).limit(10)
+```
 **Show same rating**
 
--db.listing.find({},{_id:1,review_scores: 1,name: 1}).sort({'review_scores.review_scores_rating': -1,name: 1}).limit(10)
+```js
+db.listing.find({},{_id:1,review_scores: 1,name: 1}).sort({'review_scores.review_scores_rating': -1,name: 1}).limit(10)
+```
 **O/P-**
 
 [
@@ -324,10 +368,10 @@
 ]
 
 # a.
-
-- db.listing.find({'address.market': {$eq: "New York"},'amenities':{$all:['Wifi', 'Shampoo','Internet','Kitchen' ]}},{_id:1,review_scores: 1,name: 1,amenities: 1}).sort({'review_scores.review_scores_rating': -1,name: 1}).limit(10) 
-**O/P-**
-
+```js
+db.listing.find({'address.market': {$eq: "New York"},'amenities':{$all:['Wifi', 'Shampoo','Internet','Kitchen' ]}},{_id:1,review_scores: 1,name: 1,amenities: 1}).sort({'review_scores.review_scores_rating': -1,name: 1}).limit(10) 
+```
+**O/P->**
 [
   {
     _id: '3530395',
